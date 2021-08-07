@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack serve --host 0.0.0.0 --mode development",
+    "start": "webpack serve --host 0.0.0.0 --port 5000 --mode development",
     "lint": "eslint --fix src/**/*.jsx"
   },
   "devDependencies": {
