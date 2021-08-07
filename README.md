@@ -39,7 +39,7 @@ Creación del cluster en google cloud
 Imagenes de docker del frontend y el backend
 ![](images.png)
 
-Deplyments del frontend y el backend cada uno con 3 pods
+Deplyments del frontend, el backend y base de datos cada uno con 3 pods
 ![](deployment.png)
 
 ## Referencias 
