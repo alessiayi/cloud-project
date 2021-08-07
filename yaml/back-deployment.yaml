@@ -1,0 +1,76 @@
+---
+apiVersion: "v1"
+kind: "ConfigMap"
+metadata:
+  name: "duck-back-config-vipi"
+  namespace: "default"
+  labels:
+    app: "duck-back"
+data:
+  DB_URL: "0.0.0.0"
+  DB_PORT: "5432"
+  DB_PASSWORD: "superduck*&"
+  FRONTEND_LINK: "35.192.164.216:8080"
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "duck-back"
+  namespace: "default"
+  labels:
+    app: "duck-back"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "duck-back"
+  template:
+    metadata:
+      labels:
+        app: "duck-back"
+    spec:
+      containers:
+      - name: "duck-back-sha256-1"
+        image: "us-central1-docker.pkg.dev/andrea-alessia/ducktalk-repo/duck-back@sha256:1e2795465d2ad13de90b3b6c4eadc778c6376974acd0bf7f998073fb5ca1cff0"
+        env:
+        - name: "DB_URL"
+          valueFrom:
+            configMapKeyRef:
+              key: "DB_URL"
+              name: "duck-back-config-vipi"
+        - name: "DB_PORT"
+          valueFrom:
+            configMapKeyRef:
+              key: "DB_PORT"
+              name: "duck-back-config-vipi"
+        - name: "DB_PASSWORD"
+          valueFrom:
+            configMapKeyRef:
+              key: "DB_PASSWORD"
+              name: "duck-back-config-vipi"
+        - name: "FRONTEND_LINK"
+          valueFrom:
+            configMapKeyRef:
+              key: "FRONTEND_LINK"
+              name: "duck-back-config-vipi"
+---
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "duck-back-hpa-73jm"
+  namespace: "default"
+  labels:
+    app: "duck-back"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "duck-back"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      targetAverageUtilization: 80
+

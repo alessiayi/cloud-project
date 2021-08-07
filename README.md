@@ -14,7 +14,7 @@ Es un proyecto que se está proponiendo para otro curso y nos pareció adecuado 
 * Múltiples containers
   * Container para la base de datos
   * Container para el fontend
-  * Container para el backend 
+  * Container para el backend
 * Kubernetes: Orquestrador, monitoreo de la infraestructura y escalabilidad con load balancing
 * Deployment de kubernetes en google cloud
 * Almacenamiento de mensajes en PostgreSQL
@@ -34,18 +34,18 @@ Es un proyecto que se está proponiendo para otro curso y nos pareció adecuado 
 
 ## Google Cloud.
 Creación del cluster en google cloud
-![](cluster.png)
+![](images/cluster.png)
 
 Imagenes de docker del frontend y el backend
-![](images.png)
+![](images/images.png)
 
 Deplyments del frontend, el backend y base de datos cada uno con 3 pods
-![](deployment.png)
+![](images/deployment.png)
 
 Arquitectura
-![](Arqui.png)
+![](images/Arqui.png)
 
-## Referencias 
+## Referencias
 * The  NIST  Definition  of  Cloud  Computing.  Author(s)  Peter  Mell  (NIST),  Tim Grance (NIST). September 2011.
 * Distributed  and  Cloud  Computing  From  Parallel  Processing  to  the  Internet  of Things. Kai Hwang, Geoffrey C. Fox,  Jack J. Dongarra.
 * Cloud Computing Theory and Practice, Second Edition. Dan C. Marinescu.

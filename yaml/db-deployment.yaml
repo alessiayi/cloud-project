@@ -1,0 +1,58 @@
+---
+apiVersion: "v1"
+kind: "ConfigMap"
+metadata:
+  name: "db-config-qc4i"
+  namespace: "default"
+  labels:
+    app: "db"
+data:
+  POSTGRES_PASSWORD: "superduck*&"
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "db"
+  namespace: "default"
+  labels:
+    app: "db"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "db"
+  template:
+    metadata:
+      labels:
+        app: "db"
+    spec:
+      containers:
+      - name: "postgres-1"
+        image: "postgres:latest"
+        env:
+        - name: "POSTGRES_PASSWORD"
+          valueFrom:
+            configMapKeyRef:
+              key: "POSTGRES_PASSWORD"
+              name: "db-config-qc4i"
+---
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "db-hpa-mirm"
+  namespace: "default"
+  labels:
+    app: "db"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "db"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      targetAverageUtilization: 80
+
