@@ -32,6 +32,16 @@ Es un proyecto que se está proponiendo para otro curso y nos pareció adecuado 
 6. Crear script para enviar múltiples mensajes y testear escalabilidad y tolerancia a fallos.
 7. Monitorear infraestructura mientras se ejecuta el script para ver resultados.
 
+## Google Cloud.
+Creación del cluster en google cloud
+![](cluster.png)
+
+Imagenes de docker del frontend y el backend
+![](images.png)
+
+Deplyments del frontend y el backend cada uno con 3 pods
+![](deployment.png)
+
 ## Referencias 
 * The  NIST  Definition  of  Cloud  Computing.  Author(s)  Peter  Mell  (NIST),  Tim Grance (NIST). September 2011.
 * Distributed  and  Cloud  Computing  From  Parallel  Processing  to  the  Internet  of Things. Kai Hwang, Geoffrey C. Fox,  Jack J. Dongarra.
