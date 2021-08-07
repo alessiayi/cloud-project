@@ -46,7 +46,7 @@ Arquitectura
 ![](images/Arqui.png)
 
 ## Yaml.
-En la [carpeta yaml](/yaml) se encontraran los archivos .yaml que se utilizaron para la creación 
+En la [carpeta yaml](/yaml) se encontraran los archivos .yaml que se utilizaron para la creación y levantamiento del cluster
 
 ## Referencias.
 * The  NIST  Definition  of  Cloud  Computing.  Author(s)  Peter  Mell  (NIST),  Tim Grance (NIST). September 2011.

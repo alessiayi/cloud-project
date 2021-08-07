@@ -10,7 +10,7 @@ data:
   DB_URL: "0.0.0.0"
   DB_PORT: "5432"
   DB_PASSWORD: "superduck*&"
-  FRONTEND_LINK: "35.192.164.216:8080"
+  FRONTEND_LINK: "35.192.164.216:5000"
 ---
 apiVersion: "apps/v1"
 kind: "Deployment"
