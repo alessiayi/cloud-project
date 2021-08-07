@@ -6,6 +6,13 @@ from datetime import datetime
 from datetime import timedelta
 from datetime import timezone
 
+from os import environ
+
+DB_URL = environ.get("DB_URL")
+DB_PORT = environ.get("DB_PORT")
+DB_PASSWORD = environ.get("DB_PASSWORD")
+FRONTEND_URL = environ.get("FRONTEND_URL")
+
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
 
@@ -15,7 +22,7 @@ app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
 app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this in your code!
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 app.config["JWT_AUTH_USERNAME_KEY"] = "id"
-app.config["CORS_ORIGINS"] = "http://localhost:8080" # frontend url
+app.config["CORS_ORIGINS"] = FRONTEND_URL # frontend url
 app.config["JWT_COOKIE_SAMESITE"] = "None"
 app.config["JWT_COOKIE_SECURE"] = True
 app.config["JWT_CSRF_METHODS"] = []
@@ -45,6 +52,10 @@ def refresh_expiring_jwts(response):
     # Case where there is not a valid JWT. Just return the original respone
     return response
 
+@app.route("/test")
+def test():  
+  return make_response(jsonify({"msg": "Cuac!", "env": f"postgresql://postgres:{DB_PASSWORD}@{DB_URL}:{DB_PORT}/postgres"}), 200)
+
 @app.route("/register", methods=["POST"])
 def register():
   data = request.get_json()
@@ -54,7 +65,6 @@ def register():
   if not success:
     abort(make_response(jsonify(email="Email already in use"), 400))
   return make_response(jsonify({}), 200)
-
 @app.route("/login", methods=["POST"])
 def login():
   data = request.get_json()
@@ -116,4 +126,4 @@ def get_chat(id):
 
 if __name__ == '__main__':
   conn.init_database(app)
-  app.run(debug=True) #, host="0.0.0.0")
+  app.run(host="0.0.0.0")

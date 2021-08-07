@@ -15,7 +15,7 @@ class Users(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   public_name = db.Column(db.String)
-  email = db.Column(db.Integer, index=True, unique=True)
+  email = db.Column(db.String, index=True, unique=True)
   password = db.Column(db.String)
   chats = db.relationship("Chats", secondary=relation_chat_user, backref=db.backref("users", lazy="dynamic"), lazy="dynamic")
 

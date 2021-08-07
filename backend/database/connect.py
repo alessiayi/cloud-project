@@ -1,14 +1,18 @@
 from .models import *
 from .utils import database_is_empty, database_file_exists
 from werkzeug.security import generate_password_hash, check_password_hash
+from os import environ
 
-DATABASE_FILE = "database/ducktalk.db"
+DB_URL = environ.get("DB_URL")
+DB_PORT = environ.get("DB_PORT")
+DB_PASSWORD = environ.get("DB_PASSWORD")
 
 def init_database(app):
-  app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{DATABASE_FILE}"
+  # app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{DATABASE_FILE}"
+  app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://postgres:{DB_PASSWORD}@{DB_URL}:{DB_PORT}/postgres"
   app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
   db.init_app(app)
-  if not database_file_exists(DATABASE_FILE) or database_is_empty(db, app):
+  if database_is_empty(db, app):
     with app.app_context():
       db.create_all()
 
@@ -18,10 +22,10 @@ def add_user(public_name, email, password):
     email=email,
     password=generate_password_hash(password))
   db.session.add(user)
-  try:
-    db.session.commit()
-  except:
-    return False
+  #try:
+  db.session.commit()
+  #except:
+    #return False
   return True
 
 def auth(email, password):
