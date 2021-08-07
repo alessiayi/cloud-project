@@ -1,5 +1,6 @@
 # Proyecto de Cloud Computing
 ## Funcionalidad
+
 La propuesta consiste en una aplicación de mensajería online. Incluiría las secciones de:
 * Registro
 * Inicio de sesión
@@ -19,30 +20,52 @@ Es un proyecto que se está proponiendo para otro curso y nos pareció adecuado 
 * Deployment de kubernetes en google cloud
 * Almacenamiento de mensajes en PostgreSQL
 * Testear tolerancia a fallos y escalabilidad (enviar múltiples mensajes en un corto tiempo)
-  * Escalar luego de recibir cierta cantidad de mensajes
+  * Auto escalar luego de recibir cierta cantidad de mensajes
 
 ## Pasos necesarios para su ejecución.
 1. Crear interfaz (frontend) en React para el inicio de sesión, registro y chat.
 2. Diseñar y crear base de datos en PostgreSQL para almacenar los mensajes.
 3. Crear el servidor en Flask:<br/>
-  3.1. Conectar con base de datos<br/>
-  3.2. Exponer REST API al frontend<br/>
+    3.1. Conectar con base de datos<br/>
+    3.2. Exponer REST API al frontend<br/>
 4. Migrar servidor y base de datos a containers.
 5. Manejar containers con Kubernetes.
 6. Crear script para enviar múltiples mensajes y testear escalabilidad y tolerancia a fallos.
 7. Monitorear infraestructura mientras se ejecuta el script para ver resultados.
 
 ## Google Cloud.
-Creación del cluster en google cloud
+#### Creación del cluster en google cloud
 ![](images/cluster.png)
 
-Imagenes de docker del frontend y el backend
+#### Imagenes de docker del frontend y el backend
 ![](images/images.png)
 
-Deplyments del frontend, el backend y base de datos cada uno con 3 pods
+#### Deplyments del frontend, el backend y base de datos cada uno con 3 pods
 ![](images/deployment.png)
 
-Arquitectura
+#### Pruebas de autoscaling
+Se configuró el un evento de autoscaling con un límite de CPU usage > 1% (se eligió este porcentaje para poder probarlo sin mucho esfuerzo computacional).
+![](images/autoscaling-setup.png)
+
+El deployment comienza con 1 pod.
+![](images/autoscaling/onepod.png)
+
+Se utilizó [este](https://github.com/mildsunrise/curl-benchmark) script de Python para realizar requests al deployment `duck-front` (frontend) y forzar un incremento del CPU usage.
+![](images/autoscaling/script.png)
+
+Mientras se ejecutaba el script, se monitoreó la aplicación con Google Cloud Metrics Explorer.
+![](images/autoscaling/metrics.png)
+
+Cuando se excedió el límite, se aumentó la cantidad de pods. La siguiente imagen muestra el momento en que incrementaban.
+![](images/autoscaling/inprogress.png)
+
+Luego de unos segundos, los pods están listos. Se ha aumentado uno (2 pods en total).
+![](images/autoscaling/completed.png)
+
+El evento de scaling quedó registrado en la sección de eventos del deployment.
+![](images/autoscaling/event.png)
+
+#### Arquitectura
 ![](images/Arqui.png)
 
 ## Yaml.
