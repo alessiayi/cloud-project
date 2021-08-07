@@ -12,9 +12,14 @@ La propuesta consiste en una aplicación de mensajería online. Incluiría las s
 Es un proyecto que se está proponiendo para otro curso y nos pareció adecuado para aplicar los conceptos aprendidos de Cloud Computing. Además, al ser una aplicación de mensajería, nos gustaría desplegarlo en la nube para acceder a la aplicación desde cualquier lugar y hacerlo escalable.
 ## ¿Qué  características  de  la  computación  en  nube pueden ser integradas en la aplicación?
 * Múltiples containers
+  * Container para la base de datos
+  * Container para el fontend
+  * Container para el backend 
 * Kubernetes: Orquestrador, monitoreo de la infraestructura y escalabilidad con load balancing
+* Deployment de kubernetes en google cloud
 * Almacenamiento de mensajes en PostgreSQL
 * Testear tolerancia a fallos y escalabilidad (enviar múltiples mensajes en un corto tiempo)
+  * Escalar luego de recibir cierta cantidad de mensajes
 
 ## Pasos necesarios para su ejecución.
 1. Crear interfaz (frontend) en React para el inicio de sesión, registro y chat.
