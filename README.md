@@ -43,7 +43,7 @@ Deplyments del frontend, el backend y base de datos cada uno con 3 pods
 ![](deployment.png)
 
 Arquitectura
-![](Arquitec.png)
+![](Arqui.png)
 
 ## Referencias 
 * The  NIST  Definition  of  Cloud  Computing.  Author(s)  Peter  Mell  (NIST),  Tim Grance (NIST). September 2011.
