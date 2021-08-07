@@ -45,7 +45,10 @@ Deplyments del frontend, el backend y base de datos cada uno con 3 pods
 Arquitectura
 ![](images/Arqui.png)
 
-## Referencias
+## Yaml.
+En la [carpeta yaml](/yaml) se encontraran los archivos .yaml que se utilizaron para la creación 
+
+## Referencias.
 * The  NIST  Definition  of  Cloud  Computing.  Author(s)  Peter  Mell  (NIST),  Tim Grance (NIST). September 2011.
 * Distributed  and  Cloud  Computing  From  Parallel  Processing  to  the  Internet  of Things. Kai Hwang, Geoffrey C. Fox,  Jack J. Dongarra.
 * Cloud Computing Theory and Practice, Second Edition. Dan C. Marinescu.
