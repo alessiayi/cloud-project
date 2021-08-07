@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom global styles */
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.bg-duck {
+  background-image: url("./assets/images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.reset-bg-position {
+  background-position-x: 100%;
+  background-position-y: 0;
+}
+
+.fade-transition {
+  animation: fadeInAnimation ease 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  // border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
